@@ -111,7 +111,7 @@ function ProjectCard({
           className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
             background:
-              "linear-gradient(135deg, rgba(139,92,246,0.3), rgba(6,182,212,0.3), rgba(139,92,246,0.3))",
+              "linear-gradient(135deg, rgba(14,165,233,0.3), rgba(6,182,212,0.3), rgba(14,165,233,0.3))",
             filter: "blur(8px)",
           }}
         />

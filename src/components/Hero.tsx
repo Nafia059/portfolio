@@ -20,7 +20,7 @@ export default function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <div className="absolute inset-0 bg-grid opacity-50" />
+      <div className="absolute inset-0 bg-mesh" />
 
       <div className="floating-orb w-72 h-72 bg-accent/20 top-20 -left-20 animate-float" />
       <div className="floating-orb w-96 h-96 bg-accent-secondary/15 bottom-20 -right-32 animate-float-delayed" />
@@ -139,7 +139,7 @@ export default function Hero() {
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="text-zinc-600"
+              className="text-sky-800"
             >
               <path d="M12 5v14M5 12l7 7 7-7" />
             </svg>
