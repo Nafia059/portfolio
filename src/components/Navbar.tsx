@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -15,8 +15,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
     const onScroll = () => {
@@ -99,12 +97,6 @@ export default function Navbar() {
           </button>
         </div>
       </motion.nav>
-
-      {/* Scroll progress bar */}
-      <motion.div
-        style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-[2px] bg-accent z-[60] origin-left"
-      />
 
       <AnimatePresence>
         {mobileOpen && (
