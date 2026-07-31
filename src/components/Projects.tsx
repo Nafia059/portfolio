@@ -42,7 +42,7 @@ const projects = [
     tags: ["HTML", "CSS"],
     image: null,
     github: "https://github.com/Nafia059/landing-page",
-    live: "#",
+    live: "https://landing-page-liart-six-25.vercel.app/",
   },
   {
     title: "Weather Dashboard",
