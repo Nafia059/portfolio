@@ -116,7 +116,7 @@ function ProjectCard({
           }}
         />
 
-        <div className="relative h-48 bg-gradient-to-br from-accent/10 to-accent-secondary/10 overflow-hidden">
+        <div className="relative h-48 bg-gradient-to-br from-accent/10 to-accent-secondary/10 overflow-hidden rounded-t-2xl">
           {project.image ? (
             <img
               src={project.image}
