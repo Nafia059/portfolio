@@ -52,43 +52,66 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent/50 via-accent-secondary/50 to-transparent" />
+          {/* Animated timeline line */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-accent/50 via-accent-secondary/50 to-transparent origin-top"
+          />
 
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.title}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40, filter: "blur(5px)" }}
+              animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+              transition={{
+                duration: 0.6,
+                delay: 0.3 + i * 0.25,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
               className={`relative mb-12 ${
                 i % 2 === 0
                   ? "md:pr-[calc(50%+2rem)]"
                   : "md:pl-[calc(50%+2rem)]"
               } pl-12 md:pl-0`}
             >
-              <div
-                className={`absolute left-2 md:left-1/2 top-6 w-4 h-4 rounded-full border-2 border-accent bg-background transform md:-translate-x-1/2 -translate-x-1/2`}
-              />
+              {/* Animated dot */}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.25, type: "spring" }}
+                className="absolute left-2 md:left-1/2 top-6 w-4 h-4 rounded-full border-2 border-accent bg-background transform md:-translate-x-1/2 -translate-x-1/2 z-10"
+              >
+                <motion.div
+                  animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+                  className="absolute inset-0 rounded-full bg-accent/30"
+                />
+              </motion.div>
 
-              <div className="glass rounded-2xl p-6 glass-hover transition-all duration-300">
+              <div className="glass rounded-2xl p-6 glass-hover transition-all duration-300 group">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <h3 className="text-lg font-semibold text-white">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-accent transition-colors">
                     {exp.title}
                   </h3>
-                  <span className="text-xs text-zinc-500">{exp.period}</span>
+                  <span className="text-xs text-zinc-500 px-2 py-1 rounded-full bg-white/5">
+                    {exp.period}
+                  </span>
                 </div>
-                <p className="text-accent text-sm mb-3">{exp.company}</p>
+                <p className="text-accent text-sm mb-3 font-medium">{exp.company}</p>
                 <p className="text-zinc-400 text-sm leading-relaxed mb-4">
                   {exp.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {exp.technologies.map((tech) => (
-                    <span
+                    <motion.span
                       key={tech}
-                      className="text-xs px-2 py-1 rounded-md bg-white/5 text-zinc-400"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className="text-xs px-2 py-1 rounded-md bg-white/5 text-zinc-400 hover:bg-accent/10 hover:text-accent transition-colors cursor-default"
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>
