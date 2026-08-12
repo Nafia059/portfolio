@@ -66,33 +66,25 @@ export default function Hero() {
       ref={ref}
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background"
     >
-      {/* Raw grid lines */}
+      {/* Subtle grid lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-[15%] w-px h-full bg-white/[0.04]" />
-        <div className="absolute top-0 left-[50%] w-px h-full bg-white/[0.04]" />
-        <div className="absolute top-0 left-[85%] w-px h-full bg-white/[0.04]" />
-        <div className="absolute top-[33%] left-0 w-full h-px bg-white/[0.04]" />
-        <div className="absolute top-[66%] left-0 w-full h-px bg-white/[0.04]" />
+        <div className="absolute top-0 left-[20%] w-px h-full bg-white/[0.03]" />
+        <div className="absolute top-0 left-[50%] w-px h-full bg-white/[0.03]" />
+        <div className="absolute top-0 left-[80%] w-px h-full bg-white/[0.03]" />
+        <div className="absolute top-[33%] left-0 w-full h-px bg-white/[0.03]" />
+        <div className="absolute top-[66%] left-0 w-full h-px bg-white/[0.03]" />
       </div>
-
-      {/* Accent block - raw shape */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.2, delay: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-        className="absolute top-[18%] right-0 w-[40%] h-16 bg-accent origin-right hidden lg:block"
-      />
 
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1600px] mx-auto w-full"
+        className="relative z-10 px-6 sm:px-10 lg:px-20 max-w-6xl mx-auto w-full"
       >
         {/* Top label */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex items-center gap-3 mb-6 md:mb-8"
+          className="flex items-center gap-3 mb-4 md:mb-6"
         >
           <div className="w-8 h-px bg-accent" />
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500">
@@ -101,12 +93,12 @@ export default function Hero() {
         </motion.div>
 
         {/* Main name - massive brutalist type */}
-        <div className="relative mb-6 md:mb-8">
+        <div className="relative mb-4 md:mb-6">
           <motion.h1
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-            className="text-[clamp(3.5rem,12vw,11rem)] font-black leading-[0.85] tracking-tighter text-white uppercase"
+            className="text-[clamp(3rem,11vw,9rem)] font-black leading-[0.85] tracking-tighter text-white uppercase"
           >
             Nafia
           </motion.h1>
@@ -114,47 +106,42 @@ export default function Hero() {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] as const }}
-            className="text-[clamp(3.5rem,12vw,11rem)] font-black leading-[0.85] tracking-tighter text-transparent uppercase [-webkit-text-stroke:2px_rgba(255,255,255,0.2)]"
+            className="text-[clamp(3rem,11vw,9rem)] font-black leading-[0.85] tracking-tighter text-transparent uppercase [-webkit-text-stroke:2px_rgba(255,255,255,0.2)]"
           >
             Aziz
           </motion.h1>
-
-          {/* Overlapping accent tag */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="absolute bottom-2 md:bottom-4 right-4 md:right-12 lg:right-20"
-          >
-            <div className="bg-accent text-white font-mono text-xs md:text-sm px-4 py-2 uppercase tracking-widest">
-              Available for work
-            </div>
-          </motion.div>
         </div>
 
-        {/* Role typing effect */}
+        {/* Role + availability row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mb-8 md:mb-10"
+          className="flex flex-wrap items-center gap-4 mb-8 md:mb-10"
         >
           <div className="text-lg sm:text-xl md:text-2xl font-mono h-8">
             <span className="text-zinc-500 mr-2">&gt;</span>
             <TypingEffect />
           </div>
+          <div className="h-4 w-px bg-white/10 hidden sm:block" />
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="font-mono text-xs uppercase tracking-widest text-zinc-500">
+              Available for work
+            </span>
+          </div>
         </motion.div>
 
-        {/* Content grid - asymmetric */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mb-10 md:mb-14">
-          {/* Profile image - left, raw square crop */}
+        {/* Content row - photo, bio, stats */}
+        <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 mb-10 md:mb-14">
+          {/* Profile image */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="md:col-span-3"
+            className="shrink-0"
           >
-            <div className="relative w-40 h-40 md:w-48 md:h-48 border-2 border-white/10 overflow-hidden">
+            <div className="relative w-36 h-36 md:w-44 md:h-44 border-2 border-white/10 overflow-hidden">
               <Image
                 src="/images/profile.jpg"
                 alt="Nafia Aziz"
@@ -163,40 +150,39 @@ export default function Hero() {
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 priority
               />
-              {/* Corner marks */}
               <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent" />
               <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-accent" />
             </div>
           </motion.div>
 
-          {/* Bio text */}
+          {/* Bio */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="md:col-span-5 flex flex-col justify-center"
+            className="flex-1 flex flex-col justify-center"
           >
-            <p className="text-sm md:text-base text-zinc-400 leading-relaxed max-w-md">
+            <p className="text-sm md:text-base text-zinc-400 leading-relaxed max-w-lg">
               Passionate developer who loves turning ideas into reality through code.
               With a keen eye for design and a focus on clean, maintainable solutions,
               I create digital experiences that make a difference.
             </p>
           </motion.div>
 
-          {/* Stats - right aligned */}
+          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            className="md:col-span-4 flex md:flex-col md:justify-center gap-6 md:gap-4"
+            className="flex md:flex-col gap-6 md:gap-5 shrink-0"
           >
-            <div className="flex-1 md:border-l-2 md:border-accent md:pl-4">
+            <div className="md:border-l-2 md:border-accent md:pl-4">
               <div className="text-3xl md:text-4xl font-black text-white">5+</div>
               <div className="font-mono text-[0.65rem] uppercase tracking-widest text-zinc-600 mt-1">
-                Projects Shipped
+                Projects
               </div>
             </div>
-            <div className="flex-1 md:border-l-2 md:border-white/10 md:pl-4">
+            <div className="md:border-l-2 md:border-white/10 md:pl-4">
               <div className="text-3xl md:text-4xl font-black text-white">3+</div>
               <div className="font-mono text-[0.65rem] uppercase tracking-widest text-zinc-600 mt-1">
                 Tech Stack
@@ -205,7 +191,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* CTA row */}
+        {/* CTA buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -253,12 +239,12 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator - raw */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.4 }}
-        className="absolute bottom-8 left-6 sm:left-10 md:left-16"
+        className="absolute bottom-8 left-6 sm:left-10 lg:left-20"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
@@ -272,8 +258,7 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Year watermark */}
-      <div className="absolute bottom-8 right-6 sm:right-10 md:right-16 font-mono text-[0.6rem] uppercase tracking-widest text-zinc-700">
+      <div className="absolute bottom-8 right-6 sm:right-10 lg:right-20 font-mono text-[0.6rem] uppercase tracking-widest text-zinc-700">
         &copy; 2024
       </div>
     </section>
