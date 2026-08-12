@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
+
+Personal portfolio website built with Next.js.
+
+## Overview
+
+This is a modern portfolio website showcasing my projects and skills as a Full Stack Web Developer.
+
+## Technologies
+
+- **Next.js** - React framework
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+
+## Getting Started
 
 ## Getting Started
 
