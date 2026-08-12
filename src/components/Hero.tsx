@@ -39,7 +39,7 @@ function TypingEffect() {
   }, [text, isDeleting, roleIndex]);
 
   return (
-    <span className="font-mono text-accent">
+    <span className="gradient-text">
       {text}
       <motion.span
         animate={{ opacity: [1, 0] }}
@@ -59,208 +59,174 @@ export default function Hero() {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.9]);
 
   return (
     <section
       id="home"
       ref={ref}
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Subtle grid lines */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-[20%] w-px h-full bg-white/[0.03]" />
-        <div className="absolute top-0 left-[50%] w-px h-full bg-white/[0.03]" />
-        <div className="absolute top-0 left-[80%] w-px h-full bg-white/[0.03]" />
-        <div className="absolute top-[33%] left-0 w-full h-px bg-white/[0.03]" />
-        <div className="absolute top-[66%] left-0 w-full h-px bg-white/[0.03]" />
-      </div>
+      <div className="absolute inset-0 bg-mesh" />
 
       <motion.div
-        style={{ y, opacity }}
-        className="relative z-10 px-6 sm:px-10 lg:px-20 max-w-6xl mx-auto w-full"
+        className="floating-orb w-72 h-72 bg-accent/20 top-20 -left-20 animate-float"
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 90, 0],
+        }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="floating-orb w-96 h-96 bg-accent-secondary/15 bottom-20 -right-32 animate-float-delayed"
+        animate={{
+          scale: [1, 0.8, 1],
+          rotate: [0, -90, 0],
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+      />
+
+      <motion.div
+        style={{ y, opacity, scale }}
+        className="relative z-10 px-6 max-w-6xl mx-auto w-full"
       >
-        {/* Top label */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex items-center gap-3 mb-4 md:mb-6"
-        >
-          <div className="w-8 h-px bg-accent" />
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-zinc-500">
-            Portfolio / 2024
-          </span>
-        </motion.div>
-
-        {/* Main name - massive brutalist type */}
-        <div className="relative mb-4 md:mb-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-            className="text-[clamp(3rem,11vw,9rem)] font-black leading-[0.85] tracking-tighter text-white uppercase"
-          >
-            Nafia
-          </motion.h1>
-          <motion.h1
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] as const }}
-            className="text-[clamp(3rem,11vw,9rem)] font-black leading-[0.85] tracking-tighter text-transparent uppercase [-webkit-text-stroke:2px_rgba(255,255,255,0.2)]"
-          >
-            Aziz
-          </motion.h1>
-        </div>
-
-        {/* Role + availability row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="flex flex-wrap items-center gap-4 mb-8 md:mb-10"
-        >
-          <div className="text-lg sm:text-xl md:text-2xl font-mono h-8">
-            <span className="text-zinc-500 mr-2">&gt;</span>
-            <TypingEffect />
-          </div>
-          <div className="h-4 w-px bg-white/10 hidden sm:block" />
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="font-mono text-xs uppercase tracking-widest text-zinc-500">
-              Available for work
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Content row - photo, bio, stats */}
-        <div className="flex flex-col md:flex-row items-start gap-8 md:gap-12 mb-10 md:mb-14">
-          {/* Profile image */}
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Profile Image with animated ring */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="shrink-0"
+            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="relative shrink-0"
           >
-            <div className="relative w-36 h-36 md:w-44 md:h-44 border-2 border-white/10 overflow-hidden">
-              <Image
-                src="/images/profile.jpg"
-                alt="Nafia Aziz"
-                width={256}
-                height={256}
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                priority
-              />
-              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent" />
-              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-accent" />
+            {/* Animated rotating ring */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-3 rounded-full border border-accent/20 border-dashed"
+            />
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-6 rounded-full border border-accent-secondary/10"
+            />
+
+            <div className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden glass p-1 glow">
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-accent/30 to-accent-secondary/30 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/images/profile.jpg"
+                  alt="Nafia Aziz"
+                  width={256}
+                  height={256}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </div>
             </div>
+            <motion.div
+              animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.3, 0.15] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-2 -right-2 w-20 h-20 bg-accent/15 rounded-full blur-xl"
+            />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute -top-2 -left-2 w-16 h-16 bg-accent-secondary/15 rounded-full blur-xl"
+            />
           </motion.div>
 
-          {/* Bio */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex-1 flex flex-col justify-center"
-          >
-            <p className="text-sm md:text-base text-zinc-400 leading-relaxed max-w-lg">
-              Passionate developer who loves turning ideas into reality through code.
+          {/* Text Content */}
+          <div className="text-center lg:text-left">
+            <motion.p
+              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-sm md:text-base text-zinc-500 tracking-widest uppercase mb-4"
+            >
+              Hello, I&apos;m
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4"
+            >
+              <span className="gradient-text">Nafia Aziz</span>
+            </motion.h1>
+
+            {/* Typing effect */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-xl md:text-2xl font-medium mb-6 h-8"
+            >
+              <TypingEffect />
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="text-sm text-zinc-500 mb-8 max-w-xl leading-relaxed"
+            >
+              I&apos;m a passionate developer who loves turning ideas into reality through code.
               With a keen eye for design and a focus on clean, maintainable solutions,
-              I create digital experiences that make a difference.
-            </p>
-          </motion.div>
+              I create digital experiences that make a difference. Always learning, always building.
+            </motion.p>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex md:flex-col gap-6 md:gap-5 shrink-0"
-          >
-            <div className="md:border-l-2 md:border-accent md:pl-4">
-              <div className="text-3xl md:text-4xl font-black text-white">5+</div>
-              <div className="font-mono text-[0.65rem] uppercase tracking-widest text-zinc-600 mt-1">
-                Projects
-              </div>
-            </div>
-            <div className="md:border-l-2 md:border-white/10 md:pl-4">
-              <div className="text-3xl md:text-4xl font-black text-white">3+</div>
-              <div className="font-mono text-[0.65rem] uppercase tracking-widest text-zinc-600 mt-1">
-                Tech Stack
-              </div>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+              <motion.a
+                href="#projects"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(14,165,233,0.3)" }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 rounded-xl bg-accent text-white font-medium text-sm hover:bg-accent/90 transition-all duration-300 glow"
+              >
+                View My Work
+              </motion.a>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 rounded-xl glass glass-hover text-white font-medium text-sm"
+              >
+                Get In Touch
+              </motion.a>
+            </motion.div>
+          </div>
         </div>
 
-        {/* CTA buttons */}
+        {/* Scroll indicator */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-col sm:flex-row items-start gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="mt-16 text-center"
         >
-          <motion.a
-            href="#projects"
-            whileHover={{ x: 4 }}
-            whileTap={{ scale: 0.98 }}
-            className="group flex items-center gap-3 bg-accent text-white font-mono text-sm uppercase tracking-widest px-8 py-4 hover:bg-accent/80 transition-colors"
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="inline-block"
           >
-            View Work
             <svg
-              width="16"
-              height="16"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="group-hover:translate-x-1 transition-transform"
+              className="text-sky-800"
             >
-              <path d="M5 12h14M12 5l7 7-7 7" />
+              <path d="M12 5v14M5 12l7 7 7-7" />
             </svg>
-          </motion.a>
-          <motion.a
-            href="#contact"
-            whileHover={{ x: 4 }}
-            whileTap={{ scale: 0.98 }}
-            className="group flex items-center gap-3 border border-white/10 text-zinc-400 font-mono text-sm uppercase tracking-widest px-8 py-4 hover:border-accent hover:text-white transition-colors"
-          >
-            Contact
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="group-hover:translate-x-1 transition-transform"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </motion.a>
+          </motion.div>
         </motion.div>
       </motion.div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.4 }}
-        className="absolute bottom-8 left-6 sm:left-10 lg:left-20"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex items-center gap-2"
-        >
-          <div className="w-px h-8 bg-white/20" />
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-zinc-600 -rotate-90 origin-left translate-y-6">
-            Scroll
-          </span>
-        </motion.div>
-      </motion.div>
-
-      <div className="absolute bottom-8 right-6 sm:right-10 lg:right-20 font-mono text-[0.6rem] uppercase tracking-widest text-zinc-700">
-        &copy; 2024
-      </div>
     </section>
   );
 }

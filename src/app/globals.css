@@ -35,7 +35,6 @@ body {
   color: #fff;
 }
 
-/* Shared utilities used across all sections */
 .glass {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(16px);
@@ -59,12 +58,6 @@ body {
 .glow {
   box-shadow: 0 0 20px rgba(14, 165, 233, 0.15),
               0 0 60px rgba(14, 165, 233, 0.05);
-}
-
-.glow-strong {
-  box-shadow: 0 0 30px rgba(14, 165, 233, 0.25),
-              0 0 80px rgba(14, 165, 233, 0.1),
-              0 0 120px rgba(14, 165, 233, 0.05);
 }
 
 .bg-gradient-radial {
